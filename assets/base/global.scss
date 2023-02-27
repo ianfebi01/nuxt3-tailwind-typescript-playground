@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap");
+
+// * {
+//   font-family: "Poppins", sans-serif;
+// }
+
+// Border
+.border-red {
+  border: 1px solid red;
+}
+
+// Animation
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+// Submenu
