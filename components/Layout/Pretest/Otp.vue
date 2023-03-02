@@ -1,28 +1,21 @@
-<script setup>
+<script lang="ts" setup>
 const digitCount = 4;
-const otpValue = ref("");
-const digits = reactive([]);
-const default2 = "";
-if (default2 && default2.length === digitCount) {
-  for (let i = 0; i < digitCount; i++) {
-    digits[i] = default2.charAt(i);
-  }
-} else {
-  for (let i = 0; i < digitCount; i++) {
-    digits[i] = null;
-  }
-}
-const otpCont = ref(null);
+const otpValue = ref<number>();
 
-const isDigitsFull = function () {
-  for (const elem of digits) {
-    if (elem == null || elem == undefined) {
-      return false;
-    }
-  }
-  return true;
-};
-const handleKeyDown = function (event, index) {
+interface Digits {
+  [key: string]: number | null;
+}
+const digits = reactive<Digits>({});
+
+const otpCont = useTemplateRefsList<HTMLInputElement>();
+
+const gg = ref<number[] | null[]>([]);
+
+interface EventKey extends Event {
+  key: string;
+}
+
+const handleKeyDown = function (event: EventKey, index: number) {
   if (
     event.key !== "Tab" &&
     event.key !== "ArrowRight" &&
@@ -32,20 +25,29 @@ const handleKeyDown = function (event, index) {
   }
 
   if (event.key === "Backspace") {
-    digits[index] = null;
+    digits[`field${index}`] = null;
+
+    gg.value.splice(index, 1);
+    otpValue.value = +gg.value.join("");
 
     if (index != 0) {
-      otpCont.value.children[index - 1].focus();
+      otpCont.value[index - 1].focus();
     }
     return;
   }
   if (new RegExp("^([0-9])$").test(event.key)) {
-    digits[index] = event.key;
+    digits[`field${index}`] = Number(event.key);
+
+    Object.keys(digits).forEach(function (key: string, index: number) {
+      gg.value[index] = digits[key];
+    });
+    otpValue.value = +gg.value.join("");
+
     if (index != digitCount - 1) {
-      otpCont.value.children[index + 1].focus();
+      otpCont.value[index + 1].focus();
     }
-    if (isDigitsFull()) {
-      otpValue.value = digits.join("");
+    if (index === digitCount - 1) {
+      otpCont.value[index].blur();
     }
   }
 };
@@ -62,18 +64,20 @@ const handleKeyDown = function (event, index) {
           Insert OTP code sent to your phone
         </p>
       </div>
-      <div ref="otpCont" class="flex gap-4 mb-2">
+      <!-- <div class="flex gap-4 mb-2"> -->
+      <div class="flex gap-4 mb-2">
         <input
           type="text"
-          :class="` text-center border rounded-[4px] border-gray-600 ${
+          :class="` w-full text-center border rounded-[4px] border-gray-600 ${
             digits[i] !== null && ' border-blue-500 text-blue-500'
           }'
-          }`"
-          v-for="(item, i) in digits"
-          :key="item + i"
-          v-model="digits[i]"
+        }`"
+          v-for="(item, i) in 4"
+          :key="`item + ${i}`"
+          :ref="otpCont.set"
+          v-model="digits[`field${i}`]"
           :autofocus="i === 0"
-          :placeholder="i + 1"
+          :placeholder="String(i + 1)"
           maxlength="1"
           @keydown="handleKeyDown($event, i)"
         />
@@ -83,6 +87,7 @@ const handleKeyDown = function (event, index) {
           Verify
         </button>
       </div>
+      <!-- </div> -->
     </div>
     <div
       class="text-blue-500 flex gap-2 items-center cursor-pointer hover:text-blue-600 transition-all duration-300"

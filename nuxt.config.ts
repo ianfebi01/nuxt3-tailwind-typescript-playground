@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxt-alt/proxy",
     "@pinia/nuxt",
+    "@vueuse/nuxt",
   ],
 
   typescript: {
