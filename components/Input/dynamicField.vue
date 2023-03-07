@@ -52,7 +52,6 @@ const show = ref<boolean>(false);
 
 const handleShowPassword = (val: boolean) => {
   show.value = val;
-  console.log(val);
 };
 </script>
 <template>

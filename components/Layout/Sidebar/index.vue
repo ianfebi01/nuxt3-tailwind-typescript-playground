@@ -13,11 +13,20 @@
             :class="`transition-all ease-in-out duration-500 w-full flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
               menus?.activeMenu === menu?.name && 'dark:bg-gray-700'
             } `"
-            @click="handleclickMenu(menu?.url)"
+            @click="
+              menu?.url === '/pretest/login'
+                ? handleclickMenuNewWindow(menu?.url)
+                : handleclickMenu(menu?.url)
+            "
           >
             <Icon :name="menu?.icon" />
 
             <span class="ml-3">{{ menu?.name }}</span>
+            <Icon
+              v-if="menu?.url === '/pretest/login'"
+              class="last:ml-auto"
+              name="bytesize:external"
+            />
           </div>
           <template v-else-if="menu.submenu">
             <LayoutSidebarSubmenu
@@ -72,6 +81,10 @@ const menus: ComputedRef = computed(() => {
 // Function Menu
 const handleclickMenu = (url: string) => {
   router.push(url);
+};
+
+const handleclickMenuNewWindow = (url: string) => {
+  window.open(url);
 };
 
 const isSubmenuOpen = (url: string) => {

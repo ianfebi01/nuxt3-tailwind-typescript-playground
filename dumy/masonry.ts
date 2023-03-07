@@ -49,3 +49,59 @@ for (let i = 1; i <= 80; i++) {
   imageIndex2++;
   if (imageIndex2 > images2.length - 1) imageIndex2 = 0;
 }
+
+// type ResponseApi<T> = {
+//   success: boolean;
+//   message: string;
+//   data: T;
+// };
+
+// type Book = {
+//   id: number;
+//   title: string;
+//   totalPages: number;
+//   genre: string;
+// };
+
+// type User = {
+//   id: number;
+//   fullname: string;
+//   role: string;
+// };
+
+// const responseApiBook = {
+//   success: true,
+//   message: "Success get book data",
+//   data: [
+//     {
+//       id: 34,
+//       title: "suamiku menikahi ibuku",
+//       totalPages: 54,
+//       genre: "romance",
+//     },
+//     {
+//       id: 33,
+//       title: "Remember of today",
+//       totalPages: 67,
+//       genre: "romance",
+//     },
+//   ],
+// };
+
+// const responseApiProfile = {
+//   success: true,
+//   message: "Success get profile data",
+//   data: {
+//     id: 24,
+//     fullname: "Ian Febi Sastrataruna",
+//     role: "frontend engineer",
+//   },
+// };
+
+// const listBook: ResponseApi<Book[]> = responseApiBook;
+
+// const userProfile: ResponseApi<User> = responseApiProfile;
+
+// type Message<T> = T extends { message: unknown } ? T["message"] : string;
+
+// const messageFromApi: Message<ResponseApi> = responseApi.message;

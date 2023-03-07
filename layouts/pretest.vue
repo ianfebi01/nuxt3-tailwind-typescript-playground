@@ -21,18 +21,18 @@ const { errorMessage, successMessage } = auth;
         </div>
         <Transition>
           <div
-            v-if="successMessage"
-            class="mt-6 flex justify-center items-center text-[12px] bg-white p-2 border rounded-[8px] border-transparent"
+            v-if="auth.successMessage"
+            class="mt-6 flex gap-4 justify-center items-center text-[12px] bg-white p-2 border rounded-[8px] border-transparent"
           >
             <icon
               name="bi:check-circle-fill"
-              class="text-green-400 mr-4"
+              class="text-green-400"
               size="25px"
             />
             {{ auth.successMessage }}
             <icon
               name="bi:x"
-              size="50px"
+              size="30px"
               class="transition-all duration-300 hover:bg-gray-50 p-0 border rounded-[8px] border-none"
               style="cursor: pointer"
               @click="auth.successMessage = ''"

@@ -2,6 +2,11 @@ import { Menus } from "@/utils/Interface";
 
 const menu: Menus[] = [
   {
+    name: "Pretest",
+    url: "/pretest/login",
+    icon: "carbon:pen",
+  },
+  {
     name: "Register",
     url: "/",
     icon: "carbon:user-follow",
