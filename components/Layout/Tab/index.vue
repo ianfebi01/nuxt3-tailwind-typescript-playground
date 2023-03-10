@@ -4,6 +4,7 @@ const emit = defineEmits(["tab"]);
 
 interface Props {
   tab: string;
+  tabData: Array<string>;
 }
 const props = defineProps<Props>();
 
@@ -15,22 +16,32 @@ const inActive: string =
 const handleTab = (val: string) => {
   emit("tab", val);
 };
+
+// function
+const capitalizeFirstLetter = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 </script>
 <template>
   <div
     class="w-full text-sm font-medium text-center text-gray-500 border-b border-gray-700 my-5"
   >
     <ul class="flex flex-wrap -mb-px">
-      <li class="mr-2" @click="handleTab('login')">
+      <li
+        v-for="item in tabData"
+        :key="item"
+        class="mr-2"
+        @click="handleTab(item)"
+      >
         <div
           :class="`inline-block p-4 border-b-2 ${
-            tab === 'login' ? active : inActive
+            tab === item ? active : inActive
           }`"
         >
-          Login
+          {{ capitalizeFirstLetter(item) }}
         </div>
       </li>
-      <li class="mr-2" @click="handleTab('register')">
+      <!-- <li class="mr-2" @click="handleTab('register')">
         <div
           :class="`inline-block p-4 rounded-t-lg ${
             tab === 'register' ? active : inActive
@@ -39,7 +50,7 @@ const handleTab = (val: string) => {
         >
           Registration
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

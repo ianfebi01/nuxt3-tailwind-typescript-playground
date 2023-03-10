@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -8,7 +9,15 @@ module.exports = {
     "./node_modules/flowbite.{js,ts}",
   ],
   theme: {
-    extend: {},
+    fontFamily:{
+      sans:['Inter', 'sans-serif']
+    },
+    extend: {
+      fontFamily:{
+        poppins:['Poppins', 'sans-serif']
+      }
+    },
+
   },
   plugins: [require("flowbite")],
 };

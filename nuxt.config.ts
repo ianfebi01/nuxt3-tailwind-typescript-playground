@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@vueuse/nuxt",
   ],
+  css: ["@/assets/main.scss"],
 
   typescript: {
     strict: true,
@@ -18,6 +19,7 @@ export default defineNuxtConfig({
       title: "Playground",
       titleTemplate: "%s | ianfebi01",
     },
+    pageTransition: { name: "page", mode: "out-in" },
   },
   runtimeConfig: {
     public: {
@@ -41,7 +43,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/assets/main.scss" as *;',
+          // additionalData: '@use "@/assets/main.scss" as *;',
         },
       },
     },

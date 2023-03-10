@@ -39,25 +39,25 @@ export const fields: Fields[] = [
       numeric: true,
     },
   },
-  {
-    valueName: "followUpdate",
-    fieldType: "checkbox",
-    label: "Pilih Layanan",
-    checkboxItem: [
-      {
-        text: "Pinjaman",
-        value: "pinjaman",
-      },
-      {
-        text: "Pinjol",
-        value: "pinjol",
-      },
-      {
-        text: "Kredit",
-        value: "kredit",
-      },
-    ],
-  },
+  // {
+  //   valueName: "followUpdate",
+  //   fieldType: "checkbox",
+  //   label: "Pilih Layanan",
+  //   checkboxItem: [
+  //     {
+  //       text: "Pinjaman",
+  //       value: "pinjaman",
+  //     },
+  //     {
+  //       text: "Pinjol",
+  //       value: "pinjol",
+  //     },
+  //     {
+  //       text: "Kredit",
+  //       value: "kredit",
+  //     },
+  //   ],
+  // },
   {
     valueName: "gender",
     fieldType: "select",
@@ -78,25 +78,25 @@ export const fields: Fields[] = [
       required: true,
     },
   },
-  {
-    valueName: "status",
-    fieldType: "checkbox",
-    label: "Pilih Status",
-    checkboxItem: [
-      {
-        text: "Member",
-        value: "member",
-      },
-      {
-        text: "Bukan Member",
-        value: "bukanMember",
-      },
-      {
-        text: "Karyawan",
-        value: "karyawan",
-      },
-    ],
-  },
+  // {
+  //   valueName: "status",
+  //   fieldType: "checkbox",
+  //   label: "Pilih Status",
+  //   checkboxItem: [
+  //     {
+  //       text: "Member",
+  //       value: "member",
+  //     },
+  //     {
+  //       text: "Bukan Member",
+  //       value: "bukanMember",
+  //     },
+  //     {
+  //       text: "Karyawan",
+  //       value: "karyawan",
+  //     },
+  //   ],
+  // },
   {
     valueName: "password",
     fieldType: "textField",
@@ -122,12 +122,12 @@ export const fields: Fields[] = [
       sameAs: "password",
     },
   },
-  {
-    valueName: "activate",
-    fieldType: "switch",
-    label: "Activate Acount",
-    placeholder: ["Active", "Not Active"],
-  },
+  // {
+  //   valueName: "activate",
+  //   fieldType: "switch",
+  //   label: "Activate Acount",
+  //   placeholder: ["Active", "Not Active"],
+  // },
 ];
 
 export const register: Fields[] = [
@@ -249,6 +249,73 @@ export const registerRemove: Fields[] = [
       required: true,
       minLength: 9,
       numeric: true,
+    },
+  },
+];
+
+export const profileField: Fields[] = [
+  {
+    valueName: "name",
+    fieldType: "textField",
+    defaultValue: "",
+    type: "text",
+    label: "Name",
+    placeholder: "Ian Febi",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "gender",
+    fieldType: "select",
+    defaultValue: "",
+    label: "Gender",
+    placeholder: "Select Gender",
+    items: [
+      {
+        text: "Male",
+        value: 0,
+      },
+      {
+        text: "Female",
+        value: 1,
+      },
+    ],
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "birthday",
+    fieldType: "date",
+    defaultValue: "",
+    type: "birthday",
+    label: "Date of Birth",
+    placeholder: "2000-02-14",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "hometown",
+    fieldType: "textField",
+    defaultValue: "",
+    type: "alpha",
+    label: "Home Town",
+    placeholder: "Yogyakarta",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "bio",
+    fieldType: "textarea",
+    defaultValue: "",
+    type: "text",
+    label: "",
+    placeholder: "Write Youre bio here",
+    validations: {
+      required: true,
     },
   },
 ];

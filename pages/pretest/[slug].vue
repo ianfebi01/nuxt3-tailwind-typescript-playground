@@ -11,30 +11,34 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-// state
-
-const otp = ref<boolean>(false);
-
 // function
 const handleTab = (val: string) => {
   router.push(val);
 };
+
+const tabData: string[] = ["login", "register"];
 </script>
 <template>
-  <div class="w-full">
-    <span>{{ "Today " + moment(new Date()).format("MMM DD, YYYY") }}</span>
-    <template v-if="route.params.slug != 'otp'">
-      <LayoutTab :tab="route.params.slug.toString()" @tab="handleTab($event)" />
-      <LayoutPretestLogin v-if="route.params.slug === 'login'" />
-      <LayoutPretestRegister
-        v-else-if="route.params.slug === 'register'"
+  <div class="py-20 px-20 flex flex-col items-center">
+    <div class="w-full">
+      <span>{{ "Today " + moment(new Date()).format("MMM DD, YYYY") }}</span>
+      <template v-if="route.params.slug != 'otp'">
+        <LayoutTab
+          :tab-data="tabData"
+          :tab="route.params.slug.toString()"
+          @tab="handleTab($event)"
+        />
+        <LayoutPretestLogin v-if="route.params.slug === 'login'" />
+        <LayoutPretestRegister
+          v-else-if="route.params.slug === 'register'"
+          @tab="handleTab($event)"
+        />
+      </template>
+      <LayoutPretestOtp
+        v-else-if="route.params.slug === 'otp'"
         @tab="handleTab($event)"
       />
-    </template>
-    <LayoutPretestOtp
-      v-else-if="route.params.slug === 'otp'"
-      @tab="handleTab($event)"
-    />
+    </div>
   </div>
 </template>
 

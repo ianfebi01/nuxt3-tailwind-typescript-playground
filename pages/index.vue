@@ -17,6 +17,9 @@ const auth = authStore();
 // Page Meta
 definePageMeta({
   layout: "default",
+  pageTransition: {
+    name: "page",
+  },
 });
 
 // interface

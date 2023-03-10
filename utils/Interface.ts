@@ -23,7 +23,7 @@ export interface Fields {
   }[];
   items?: {
     text: string;
-    value: string;
+    value: string | number;
   }[];
 }
 
@@ -92,4 +92,12 @@ export interface Coords {
 
 export interface TempForm<T> {
   [key: string]: T;
+}
+
+export interface Event<T> {
+  target: T;
+}
+
+export interface Form {
+  [key: string]: number | string;
 }

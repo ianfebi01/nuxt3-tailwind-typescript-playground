@@ -4,6 +4,17 @@
 //   font-family: "Poppins", sans-serif;
 // }
 
+// Transition
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
 // Border
 .border-red {
   border: 1px solid red;
@@ -12,11 +23,39 @@
 // Animation
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.4s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
 }
-// Submenu
+
+// btn
+.btn {
+  &-secondary {
+    @apply bg-white;
+    @apply text-gray-900;
+    @apply h-[44px];
+    @apply border;
+    @apply rounded-[4px];
+    @apply border-gray-900;
+    @apply text-[14px];
+  }
+  &-primary {
+    @apply bg-blue-500;
+    @apply text-white;
+    @apply h-[44px];
+    @apply border;
+    @apply rounded-[4px];
+    @apply border-none;
+    @apply text-[14px];
+  }
+}
+
+// img
+.image {
+  @apply w-full;
+  @apply h-full;
+  @apply object-cover;
+}

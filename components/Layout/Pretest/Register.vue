@@ -6,6 +6,7 @@ import {
   Position,
   Coords,
   TempForm,
+  Form,
 } from "@/utils/Interface";
 import {
   useVuelidate,
@@ -31,13 +32,9 @@ const deviceDetector = new DeviceDetector();
 // define emit
 const emit = defineEmits(["tab", "otp"]);
 
-interface RegisterField {
-  [key: string]: number | string;
-}
-
 // state
 const fields = ref<Fields[]>(register);
-const form: RegisterField = reactive({});
+const form: Form = reactive({});
 
 fields.value.forEach((item: Fields) => {
   form[item?.valueName] = item.defaultValue;
