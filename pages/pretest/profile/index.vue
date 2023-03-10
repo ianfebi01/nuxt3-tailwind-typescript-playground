@@ -84,18 +84,37 @@ const tabData: string[] = ["information", "career", "education", "gallery"];
             </div>
           </div>
         </div>
-        <LayoutTab :tab-data="tabData" :tab="tab" @tab="handleTab($event)" />
-        <div v-if="loading.profile" class="loading-wrapper">
-          <LoaderBlue />
+        <PretestLayoutTab
+          :tab-data="tabData"
+          :tab="tab"
+          @tab="handleTab($event)"
+        />
+
+        <div class="w-full flex flex-col gap-8 items-stretch grow-[1]">
+          <div
+            class="w-full border border-gray-700 p-6 rounded-[8px] flex flex-col gap-2 h-full"
+          >
+            <div v-if="loading.profile" class="loading-wrapper">
+              <LoaderBlue />
+            </div>
+            <Transition>
+              <PretestInformation
+                v-if="tab === 'information' && fields.length"
+                :fields-data="fields"
+                class="transition-all duration-1000 ease-in-out"
+                @tab="handleTab($event)"
+              />
+            </Transition>
+            <Transition>
+              <PretestCareer
+                v-if="tab === 'career' && fields.length"
+                :fields-data="fields"
+                class="transition-all duration-1000 ease-in-out"
+                @tab="handleTab($event)"
+              />
+            </Transition>
+          </div>
         </div>
-        <Transition>
-          <LayoutPretestInformation
-            v-if="tab === 'information' && fields.length"
-            :fields-data="fields"
-            class="transition-all duration-1000 ease-in-out"
-            @tab="handleTab($event)"
-          />
-        </Transition>
       </div>
     </div>
   </div>
@@ -111,10 +130,10 @@ const tabData: string[] = ["information", "career", "education", "gallery"];
 }
 .profile {
   &-wrapper {
-    @apply w-full bg-white px-6 py-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border rounded-[16px] border-none min-h-full;
+    @apply w-full bg-white px-6 py-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border rounded-[16px] flex flex-col border-none min-h-full;
   }
 }
 .loading-wrapper {
-  @apply w-full h-[70%] flex items-center justify-center;
+  @apply w-full h-full flex items-center justify-center;
 }
 </style>

@@ -23,18 +23,18 @@ const tabData: string[] = ["login", "register"];
     <div class="w-full">
       <span>{{ "Today " + moment(new Date()).format("MMM DD, YYYY") }}</span>
       <template v-if="route.params.slug != 'otp'">
-        <LayoutTab
+        <PretestLayoutTab
           :tab-data="tabData"
           :tab="route.params.slug.toString()"
           @tab="handleTab($event)"
         />
-        <LayoutPretestLogin v-if="route.params.slug === 'login'" />
-        <LayoutPretestRegister
+        <PretestLogin v-if="route.params.slug === 'login'" />
+        <PretestRegister
           v-else-if="route.params.slug === 'register'"
           @tab="handleTab($event)"
         />
       </template>
-      <LayoutPretestOtp
+      <PretestOtp
         v-else-if="route.params.slug === 'otp'"
         @tab="handleTab($event)"
       />
