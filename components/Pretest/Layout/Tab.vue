@@ -23,14 +23,12 @@ const capitalizeFirstLetter = (string: string) => {
 };
 </script>
 <template>
-  <div
-    class="w-full text-sm font-medium text-center text-gray-500 border-b border-gray-700 my-5"
-  >
-    <ul class="flex flex-wrap -mb-px">
+  <div class="w-full text-sm font-medium text-center text-gray-500 my-5">
+    <ul class="flex flex-wrap w-full">
       <li
         v-for="item in tabData"
         :key="item"
-        class="mr-2"
+        class="border-b border-gray-700 grow-[1]"
         @click="handleTab(item)"
       >
         <div
@@ -41,16 +39,6 @@ const capitalizeFirstLetter = (string: string) => {
           {{ capitalizeFirstLetter(item) }}
         </div>
       </li>
-      <!-- <li class="mr-2" @click="handleTab('register')">
-        <div
-          :class="`inline-block p-4 rounded-t-lg ${
-            tab === 'register' ? active : inActive
-          }`"
-          aria-current="page"
-        >
-          Registration
-        </div>
-      </li> -->
     </ul>
   </div>
 </template>

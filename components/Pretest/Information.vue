@@ -120,16 +120,11 @@ const isImageFileAvaible = (value: File | null | undefined) => {
 };
 </script>
 <template>
-  <div class="flex">
-    <div>
-      <p class="text-[16px] font-[500]">Profile Information</p>
-      <p class="text-[12px] font-normal">Your personal data</p>
-    </div>
-    <Icon
-      name="ph:pencil-simple-line"
-      class="last:ml-auto text-blue-600 cursor-pointer"
-    />
-  </div>
+  <PretestLayoutProfileHeader
+    subtitle="Your personal information"
+    icon="ph:pencil-simple-line"
+    title="Information"
+  />
   <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-8">
     <div class="flex flex-col gap-2">
       <p class="text-[16px] font-[500] py-2">Information Detail</p>
