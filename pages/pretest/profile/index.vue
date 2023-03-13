@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { authStore } from "~~/store/auth";
 import { Fields } from "~~/utils/Interface";
-import { profileField, careerFields } from "@/utils/fields";
+import { profileField, careerFields, educationFields } from "@/utils/fields";
 
 // Page meta
 definePageMeta({
@@ -35,6 +35,7 @@ const tab = ref<string>("information");
 const userData = ref<UserData>({});
 const informationFieldsData = ref<Fields[]>([]);
 const careerFieldsData = ref<Fields[]>([]);
+const educationFieldsData = ref<Fields[]>([]);
 
 interface Loading {
   profile: boolean;
@@ -56,6 +57,7 @@ const getUserProfile = async () => {
   // Information
   informationFieldsData.value = await setValue(profileField, "information");
   careerFieldsData.value = await setValue(careerFields, "career");
+  educationFieldsData.value = await setValue(educationFields, "education");
   loading.profile = false;
 };
 
@@ -80,14 +82,25 @@ const defaultValue = (label: string, item: Fields) => {
         : ""
       : "";
   } else if (label === "career") {
-    const career: UserData = userData.value["career"] as UserData;
-    return Object.keys(career).includes(item.valueName)
-      ? career[`${item.valueName}`] === "male"
+    const keys: UserData = userData.value["career"] as UserData;
+    return Object.keys(keys).includes(item.valueName)
+      ? keys[`${item.valueName}`] === "male"
         ? 0
-        : career[`${item.valueName}`] === "female"
+        : keys[`${item.valueName}`] === "female"
         ? 1
-        : career[`${item.valueName}`]
-        ? career[`${item.valueName}`]
+        : keys[`${item.valueName}`]
+        ? keys[`${item.valueName}`]
+        : ""
+      : "";
+  } else if (label === "education") {
+    const keys: UserData = userData.value["education"] as UserData;
+    return Object.keys(keys).includes(item.valueName)
+      ? keys[`${item.valueName}`] === "male"
+        ? 0
+        : keys[`${item.valueName}`] === "female"
+        ? 1
+        : keys[`${item.valueName}`]
+        ? keys[`${item.valueName}`]
         : ""
       : "";
   }
@@ -141,6 +154,14 @@ const tabData: string[] = ["information", "career", "education", "gallery"];
               <PretestCareer
                 v-if="tab === 'career' && careerFieldsData.length"
                 :fields-data="careerFieldsData"
+                class="transition-all duration-1000 ease-in-out"
+                @tab="handleTab($event)"
+              />
+            </Transition>
+            <Transition>
+              <PretestEducation
+                v-if="tab === 'education' && educationFieldsData.length"
+                :fields-data="educationFieldsData"
                 class="transition-all duration-1000 ease-in-out"
                 @tab="handleTab($event)"
               />

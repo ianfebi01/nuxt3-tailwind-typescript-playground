@@ -328,9 +328,6 @@ export const careerFields: Fields[] = [
     type: "text",
     label: "Position",
     placeholder: "Front End Developer",
-    validations: {
-      required: true,
-    },
   },
   {
     valueName: "company_name",
@@ -360,6 +357,30 @@ export const careerFields: Fields[] = [
     defaultValue: "",
     type: "birthday",
     label: "Ends In",
+    placeholder: "2000-02-14",
+    validations: {
+      required: true,
+    },
+  },
+];
+export const educationFields: Fields[] = [
+  {
+    valueName: "school_name",
+    fieldType: "textField",
+    defaultValue: "",
+    type: "text",
+    label: "School Name",
+    placeholder: "Sma N 1 Karangmojo",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "graduation_time",
+    fieldType: "date",
+    defaultValue: "",
+    type: "birthday",
+    label: "Graduation Time",
     placeholder: "2000-02-14",
     validations: {
       required: true,

@@ -92,3 +92,30 @@ export const usePostCareer = async (payload: Career) => {
       return false;
     });
 };
+
+// Education
+interface Education {
+  school_name?: string;
+  graduation_time?: string;
+}
+export const usePostEducation = async (payload: Education) => {
+  message.errorMessage = "";
+  message.successMessage = "";
+  const accessToken: CookieRef<string> = useCookie("accessToken");
+  return $fetch<UserData>(`/api-web/api/v1/profile/education`, {
+    method: "POST",
+    headers: new Headers({
+      Authorization: "Bearer " + accessToken.value,
+    }),
+    body: JSON.stringify(payload),
+  })
+    .then((res) => {
+      auth.userData = res?.data?.user;
+      message.successMessage = "Success add education";
+      return true;
+    })
+    .catch((err) => {
+      console.log(err);
+      return false;
+    });
+};

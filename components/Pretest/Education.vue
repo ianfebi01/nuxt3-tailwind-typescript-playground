@@ -64,7 +64,6 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, form, { $autoDirty: true });
 
 // function
-
 const setDefaultFormValue = async (fieldsData: Fields[]): Promise<void> => {
   fieldsData.forEach((item: Fields) => {
     form[item?.valueName] = item.defaultValue;
@@ -73,14 +72,14 @@ const setDefaultFormValue = async (fieldsData: Fields[]): Promise<void> => {
 
 const handleSubmit = async () => {
   loading.update = true;
-  await usePostCareer(form);
+  await usePostEducation(form);
   loading.update = false;
 };
 </script>
 <template>
   <PretestLayoutProfileHeader
-    title="Career Information"
-    subtitle="Information about your career"
+    title="Education Information"
+    subtitle="Information about your education"
     icon="mdi:plus"
   />
 
@@ -99,9 +98,13 @@ const handleSubmit = async () => {
       />
       <div class="w-full flex gap-2 mt-4">
         <button class="btn-secondary px-4">Discard</button>
-        <button class="btn-primary px-4" @click="() => handleSubmit()">
+        <button
+          class="btn-primary px-4"
+          :disabled="v$.$invalid"
+          @click="() => handleSubmit()"
+        >
           <LoaderButton v-if="loading.update" />
-          <span v-else> Add Career </span>
+          <span v-else> Add Education </span>
         </button>
       </div>
     </div>
