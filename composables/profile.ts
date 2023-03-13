@@ -63,3 +63,32 @@ export const usePostProfile = async (payload: any) => {
       return false;
     });
 };
+
+// Career
+interface Career {
+  position?: string;
+  company_name?: string;
+  starting_from?: string;
+  ending_in?: string;
+}
+export const usePostCareer = async (payload: Career) => {
+  message.errorMessage = "";
+  message.successMessage = "";
+  const accessToken: CookieRef<string> = useCookie("accessToken");
+  return $fetch<UserData>(`/api-web/api/v1/profile/career`, {
+    method: "POST",
+    headers: new Headers({
+      Authorization: "Bearer " + accessToken.value,
+    }),
+    body: JSON.stringify(payload),
+  })
+    .then((res) => {
+      auth.userData = res?.data?.user;
+      message.successMessage = "Success add career";
+      return true;
+    })
+    .catch((err) => {
+      console.log(err);
+      return false;
+    });
+};

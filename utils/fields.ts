@@ -319,3 +319,50 @@ export const profileField: Fields[] = [
     },
   },
 ];
+
+export const careerFields: Fields[] = [
+  {
+    valueName: "position",
+    fieldType: "textField",
+    defaultValue: "",
+    type: "text",
+    label: "Position",
+    placeholder: "Front End Developer",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "company_name",
+    fieldType: "textField",
+    defaultValue: "",
+    type: "text",
+    label: "Company Name",
+    placeholder: "Privy",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "starting_from",
+    fieldType: "date",
+    defaultValue: "",
+    type: "birthday",
+    label: "Start From",
+    placeholder: "2000-02-14",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "ending_in",
+    fieldType: "date",
+    defaultValue: "",
+    type: "birthday",
+    label: "Ends In",
+    placeholder: "2000-02-14",
+    validations: {
+      required: true,
+    },
+  },
+];

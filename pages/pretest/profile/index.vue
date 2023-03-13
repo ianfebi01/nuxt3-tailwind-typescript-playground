@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { authStore } from "~~/store/auth";
 import { Fields } from "~~/utils/Interface";
-import { profileField } from "@/utils/fields";
+import { profileField, careerFields } from "@/utils/fields";
 
 // Page meta
 definePageMeta({
@@ -22,12 +22,19 @@ const auth = authStore();
 
 // interface
 interface UserData {
-  [key: string]: string | number | string[] | Object | null;
+  [key: string]: string | number | string[] | Object | null | Career;
+}
+interface Career {
+  position?: string;
+  company_name?: string;
+  starting_from?: string;
+  ending_in?: string;
 }
 // State
 const tab = ref<string>("information");
-const fields = ref<Fields[]>([]);
 const userData = ref<UserData>({});
+const informationFieldsData = ref<Fields[]>([]);
+const careerFieldsData = ref<Fields[]>([]);
 
 interface Loading {
   profile: boolean;
@@ -46,9 +53,24 @@ const getUserProfile = async () => {
   await useGetCredentials();
 
   userData.value = auth.userData;
-  fields.value = await profileField.map((item) => ({
+  // Information
+  informationFieldsData.value = await setValue(profileField, "information");
+  careerFieldsData.value = await setValue(careerFields, "career");
+  loading.profile = false;
+};
+
+// Function
+const setValue = async (data: Fields[], label: string): Promise<Fields[]> => {
+  const tmp = await data.map((item) => ({
     ...item,
-    defaultValue: Object.keys(auth.userData).includes(item.valueName)
+    defaultValue: defaultValue(label, item),
+  }));
+  return tmp;
+};
+
+const defaultValue = (label: string, item: Fields) => {
+  if (label === "information") {
+    return Object.keys(userData.value).includes(item.valueName)
       ? userData.value[`${item.valueName}`] === "male"
         ? 0
         : userData.value[`${item.valueName}`] === "female"
@@ -56,9 +78,19 @@ const getUserProfile = async () => {
         : userData.value[`${item.valueName}`]
         ? userData.value[`${item.valueName}`]
         : ""
-      : "",
-  }));
-  loading.profile = false;
+      : "";
+  } else if (label === "career") {
+    const career: UserData = userData.value["career"] as UserData;
+    return Object.keys(career).includes(item.valueName)
+      ? career[`${item.valueName}`] === "male"
+        ? 0
+        : career[`${item.valueName}`] === "female"
+        ? 1
+        : career[`${item.valueName}`]
+        ? career[`${item.valueName}`]
+        : ""
+      : "";
+  }
 };
 
 const tabData: string[] = ["information", "career", "education", "gallery"];
@@ -99,16 +131,16 @@ const tabData: string[] = ["information", "career", "education", "gallery"];
             </div>
             <Transition>
               <PretestInformation
-                v-if="tab === 'information' && fields.length"
-                :fields-data="fields"
+                v-if="tab === 'information' && informationFieldsData.length"
+                :fields-data="informationFieldsData"
                 class="transition-all duration-1000 ease-in-out"
                 @tab="handleTab($event)"
               />
             </Transition>
             <Transition>
               <PretestCareer
-                v-if="tab === 'career' && fields.length"
-                :fields-data="fields"
+                v-if="tab === 'career' && careerFieldsData.length"
+                :fields-data="careerFieldsData"
                 class="transition-all duration-1000 ease-in-out"
                 @tab="handleTab($event)"
               />

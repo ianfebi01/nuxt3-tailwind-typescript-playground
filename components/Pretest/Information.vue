@@ -31,8 +31,9 @@ const imgRef = useTemplateRefsList<HTMLInputElement>();
 const image = ref<string>();
 const imageFile = ref<File>();
 
-fields.value.forEach((item: Fields) => {
-  form[item?.valueName] = item.defaultValue;
+// Mounted
+onMounted(() => {
+  setDefaultFormValue(props.fieldsData);
 });
 
 // Validations
@@ -72,6 +73,12 @@ const loading = reactive<Loading>({
 });
 
 // function
+const setDefaultFormValue = async (fieldsData: Fields[]): Promise<void> => {
+  fieldsData.forEach((item: Fields) => {
+    form[item?.valueName] = item.defaultValue;
+  });
+};
+
 const handleClickUpload = () => {
   imgRef.value[0].click();
 };
