@@ -22,6 +22,11 @@ const menu: Menus[] = [
     icon: "carbon:button-centered",
   },
   {
+    name: "Drag And Drop Upload Image",
+    url: "/uploadImage",
+    icon: "carbon:image-reference",
+  },
+  {
     name: "Dom",
     icon: "carbon:html-reference",
     collapsible: true,

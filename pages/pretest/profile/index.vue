@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { authStore } from "~~/store/auth";
-import { Fields } from "~~/utils/Interface";
+import { Fields, UserPicture } from "~~/utils/Interface";
 import { profileField, careerFields, educationFields } from "@/utils/fields";
 
 // Page meta
@@ -36,6 +36,7 @@ const userData = ref<UserData>({});
 const informationFieldsData = ref<Fields[]>([]);
 const careerFieldsData = ref<Fields[]>([]);
 const educationFieldsData = ref<Fields[]>([]);
+const galleryData = ref<UserPicture[]>([]);
 
 interface Loading {
   profile: boolean;
@@ -58,6 +59,7 @@ const getUserProfile = async () => {
   informationFieldsData.value = await setValue(profileField, "information");
   careerFieldsData.value = await setValue(careerFields, "career");
   educationFieldsData.value = await setValue(educationFields, "education");
+  galleryData.value = userData.value["user_pictures"] as UserPicture[];
   loading.profile = false;
 };
 
@@ -162,6 +164,14 @@ const tabData: string[] = ["information", "career", "education", "gallery"];
               <PretestEducation
                 v-if="tab === 'education' && educationFieldsData.length"
                 :fields-data="educationFieldsData"
+                class="transition-all duration-1000 ease-in-out"
+                @tab="handleTab($event)"
+              />
+            </Transition>
+            <Transition>
+              <PretestGallery
+                v-if="tab === 'gallery' && galleryData.length"
+                :data="galleryData"
                 class="transition-all duration-1000 ease-in-out"
                 @tab="handleTab($event)"
               />
