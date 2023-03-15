@@ -149,7 +149,7 @@ const isImageFileAvaible = (value: File | null | undefined) => {
       <div class="w-full flex gap-2 mt-4">
         <button class="btn-secondary w-full">Discard</button>
         <button class="btn-primary w-full" @click="() => handleSubmit()">
-          <LoaderButton v-if="loading.update" />
+          <AtomsALoader v-if="loading.update" />
           <span v-else> Update </span>
         </button>
       </div>

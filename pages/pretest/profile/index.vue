@@ -142,7 +142,7 @@ const tabData: string[] = ["information", "career", "education", "gallery"];
             class="w-full border border-gray-700 p-6 rounded-[8px] flex flex-col gap-2 h-full"
           >
             <div v-if="loading.profile" class="loading-wrapper">
-              <LoaderBlue />
+              <AtomsALoader color="blue-500" />
             </div>
             <Transition>
               <PretestInformation

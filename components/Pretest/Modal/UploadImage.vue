@@ -6,13 +6,22 @@ const imageFile = ref<File>();
 const image = ref<string>();
 
 // define emit
-const emit = defineEmits(["close", "change"]);
+const emit = defineEmits(["change", "update:modelValue"]);
 
 // define props
 interface Props {
-  modal: boolean;
+  modelValue: boolean;
 }
 const props = defineProps<Props>();
+
+const value = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit("update:modelValue", value);
+  },
+});
 
 // function
 const handleClickUpload = () => {
@@ -51,13 +60,12 @@ const clearImage = () => {
 
 const handleSubmit = () => {
   emit("change", imageFile.value);
-  console.log(imageFile.value);
 };
 </script>
 <template>
   <Transition>
     <div
-      v-if="props.modal"
+      v-if="value"
       class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-[rgba(0,0,0,0.5)]"
     >
       <div class="relative w-full h-full flex items-center justify-center">
@@ -70,7 +78,7 @@ const handleSubmit = () => {
             <icon
               name="mdi:close"
               class="cursor-pointer"
-              @click="emit('close')"
+              @click="value = false"
             />
           </div>
           <div

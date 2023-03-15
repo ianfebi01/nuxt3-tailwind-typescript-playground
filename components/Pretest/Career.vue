@@ -100,7 +100,7 @@ const handleSubmit = async () => {
       <div class="w-full flex gap-2 mt-4">
         <button class="btn-secondary px-4">Discard</button>
         <button class="btn-primary px-4" @click="() => handleSubmit()">
-          <LoaderButton v-if="loading.update" />
+          <AtomsALoader v-if="loading.update" />
           <span v-else> Add Career </span>
         </button>
       </div>

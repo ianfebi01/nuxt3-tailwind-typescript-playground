@@ -22,9 +22,14 @@ const menu: Menus[] = [
     icon: "carbon:button-centered",
   },
   {
-    name: "Drag And Drop Upload Image",
+    name: "Upload Image",
     url: "/uploadImage",
     icon: "carbon:image-reference",
+  },
+  {
+    name: "To Do List",
+    url: "/todolist",
+    icon: "carbon:list-boxes",
   },
   {
     name: "Dom",

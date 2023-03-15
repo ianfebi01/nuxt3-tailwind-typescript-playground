@@ -154,20 +154,6 @@ onMounted(() => {
         </svg>
         Loading...
       </button>
-      <Transition>
-        <p
-          v-if="auth.errorMessage"
-          class="text-center transition-all ease-in-out duration-300 mt-1 text-xs font-normal text-red-600 dark:text-red-500"
-        >
-          {{ auth.errorMessage }}
-        </p>
-        <p
-          v-else-if="auth.successMessage"
-          class="text-center transition-all ease-in-out duration-300 mt-1 text-xs font-normal text-green-500"
-        >
-          {{ auth.successMessage }}
-        </p>
-      </Transition>
     </form>
     <RegisterRemove class="mt-4" />
     <RegisterOtp class="mt-4" />

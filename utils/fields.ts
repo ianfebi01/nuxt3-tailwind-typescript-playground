@@ -387,3 +387,49 @@ export const educationFields: Fields[] = [
     },
   },
 ];
+export const listFields: Fields[] = [
+  {
+    valueName: "name",
+    fieldType: "textField",
+    defaultValue: "",
+    type: "text",
+    label: "Task Name",
+    placeholder: "Kerja Bakti",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "location",
+    fieldType: "textField",
+    defaultValue: "",
+    type: "text",
+    label: "Location",
+    placeholder: "Sarkem",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "description",
+    fieldType: "textField",
+    defaultValue: "",
+    type: "text",
+    label: "Description",
+    placeholder: "Bekerja bersama dodi",
+    validations: {
+      required: true,
+    },
+  },
+  {
+    valueName: "date",
+    fieldType: "date",
+    defaultValue: "",
+    type: "birthday",
+    label: "Date",
+    placeholder: "2000-02-14",
+    validations: {
+      required: true,
+    },
+  },
+];

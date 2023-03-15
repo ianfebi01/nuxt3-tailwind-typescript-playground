@@ -103,7 +103,7 @@ const handleSubmit = async () => {
           :disabled="v$.$invalid"
           @click="() => handleSubmit()"
         >
-          <LoaderButton v-if="loading.update" />
+          <AtomsALoader v-if="loading.update" />
           <span v-else> Add Education </span>
         </button>
       </div>

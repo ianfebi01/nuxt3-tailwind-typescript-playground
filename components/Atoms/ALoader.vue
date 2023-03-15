@@ -1,8 +1,24 @@
+<script lang="ts" setup>
+interface Props {
+  color: string;
+  size: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  color: "white",
+  size: 4,
+});
+
+const iconClass: ComputedRef<string> = computed(
+  (): string =>
+    `inline w-${props.size} h-${props.size} text-${props.color} animate-spin`
+);
+</script>
 <template>
   <svg
     aria-hidden="true"
     role="status"
-    class="inline w-8 h-8 text-blue-500 animate-spin"
+    :class="iconClass"
     viewBox="0 0 100 101"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

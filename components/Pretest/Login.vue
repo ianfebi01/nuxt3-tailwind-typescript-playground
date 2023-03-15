@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 import { login } from "@/utils/fields";
-import { Fields } from "@/utils/Interface";
+import {
+  Coords,
+  Fields,
+  Form,
+  Position,
+  RulesFace,
+  TempForm,
+} from "@/utils/Interface";
 import { useVuelidate, ValidationRuleWithoutParams } from "@vuelidate/core";
 import {
   required,
@@ -9,7 +16,7 @@ import {
   numeric,
   sameAs,
 } from "@vuelidate/validators";
-import DeviceDetector from "device-detector-js";
+import DeviceDetector, { DeviceDetectorResult } from "device-detector-js";
 import { authStore } from "~~/store/auth";
 
 // define device detector
@@ -22,26 +29,18 @@ const auth = authStore();
 const router = useRouter();
 
 const fields = ref<Fields[]>(login);
-const form: any = reactive({});
+const form: Form = reactive({});
 
-fields.value.forEach((item: any) => {
+fields.value.forEach((item: Fields) => {
   form[item?.valueName] = item.defaultValue;
 });
 
-// interface
-interface RulesFace {
-  required?: ValidationRuleWithoutParams<string>;
-  email?: ValidationRuleWithoutParams<string>;
-  minLength?: any;
-  numeric?: ValidationRuleWithoutParams<number>;
-  sameAs?: any;
-}
 // Validations
 const rules = computed(() => {
   let rule: RulesFace = {};
-  const tempForm: any = {};
+  const tempForm: TempForm<RulesFace> = {};
 
-  fields.value.forEach((item: any) => {
+  fields.value.forEach((item: Fields) => {
     rule = {};
     const { validations, valueName } = item;
     if (validations?.required === true) rule.required = required;
@@ -63,10 +62,10 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, form, { $autoDirty: true });
 
 // Location
-const location = ref<any>({});
+const location = ref<Coords>({});
 
-const successCallback = (position: any) => {
-  location.value = position.coords;
+const successCallback = (position: Position<Coords>) => {
+  location.value = position.coords as Coords;
 };
 
 const errorCallback = (error: any) => {
@@ -84,12 +83,12 @@ const loading = ref<boolean>(false);
 const handleLogin = async () => {
   loading.value = true;
   const userAgent = navigator.userAgent;
-  const device: any = deviceDetector.parse(userAgent);
+  const device: DeviceDetectorResult = deviceDetector.parse(userAgent);
 
   form.device_type =
-    device.device.type === "desktop"
+    device?.device?.type === "desktop"
       ? 2
-      : device.device.type === "mobile" && device.device.brand === "Apple"
+      : device?.device?.type === "smartphone" && device.device.brand === "Apple"
       ? 0
       : 1;
   form.latlong = `${location.value.latitude},${location.value.longitude}`;

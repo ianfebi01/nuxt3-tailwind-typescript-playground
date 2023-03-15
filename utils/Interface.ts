@@ -50,11 +50,11 @@ export interface OtpMatch {
 }
 
 export interface Login {
-  phone: number;
-  password: string;
-  latlong: string;
-  device_token: string;
-  device_type: number;
+  phone?: number;
+  password?: string;
+  latlong?: string;
+  device_token?: string;
+  device_type?: number;
 }
 export interface Register {
   phone?: number;
@@ -135,4 +135,12 @@ export interface UserData {
   cover_picture?: {
     url?: string | null;
   };
+}
+
+export interface List {
+  name?: string;
+  date?: string;
+  done?: number;
+  description?: string;
+  location?: string;
 }

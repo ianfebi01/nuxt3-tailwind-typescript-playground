@@ -50,9 +50,9 @@ const handleUpload = async (e: File) => {
   </div>
   <!-- <pre>{{ paginationData }}</pre> -->
 
-  <PretestModalUploadImage
+  <OrganismsOModalUpload
+    v-model="modalUploadImage"
     :modal="modalUploadImage"
-    @close="() => handleOpenModalUpload()"
     @change="handleUpload($event)"
   />
 </template>

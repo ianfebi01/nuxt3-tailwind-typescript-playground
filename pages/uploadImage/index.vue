@@ -6,13 +6,6 @@ const imageFile = ref<File>();
 const image = ref<string>();
 
 // define emit
-const emit = defineEmits(["close", "change"]);
-
-// define props
-interface Props {
-  modal: boolean;
-}
-const props = defineProps<Props>();
 
 // function
 const handleClickUpload = () => {
@@ -50,8 +43,8 @@ const clearImage = () => {
 };
 
 const handleSubmit = () => {
-  emit("change", imageFile.value);
-  console.log(imageFile.value);
+  //   emit("change", imageFile.value);
+  //   console.log(imageFile.value);
 };
 </script>
 <template>
