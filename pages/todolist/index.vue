@@ -41,10 +41,20 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules, form, { $autoDirty: true });
 
 // function
-const handleSubmit = () => {
+const handleSubmit = async () => {
   form["done"] = 0;
-  list.list.push(form);
+  list.list.push({ ...form });
+  console.log(form);
   modal.value = false;
+  setDefaultFormValue(fields.value);
+  console.log(form);
+  v$.value.$reset();
+};
+
+const setDefaultFormValue = async (fieldsData: Fields[]): Promise<void> => {
+  fieldsData.forEach((item: Fields) => {
+    form[item?.valueName] = item.defaultValue;
+  });
 };
 
 const handleFilter = (val: number) => {

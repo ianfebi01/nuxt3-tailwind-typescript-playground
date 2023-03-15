@@ -11,7 +11,6 @@ const emit = defineEmits(["changeStatus"]);
 // function
 const changeStatus = (val: number) => {
   emit("changeStatus", val);
-  console.log(val);
 };
 const iconColor: ComputedRef<string> = computed(() =>
   props.status ? "text-green-500" : "text-gray-300"
