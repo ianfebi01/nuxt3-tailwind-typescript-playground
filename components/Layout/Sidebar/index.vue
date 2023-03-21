@@ -1,3 +1,54 @@
+<script lang="ts" setup>
+import menu from "@/menu";
+
+const route = useRoute();
+const router = useRouter();
+
+// state
+const openSubmenu = ref<boolean>(false);
+
+// Menu Data
+const menus: ComputedRef = computed(() => {
+  let res = {};
+  const url = route.path;
+  let activeMenu: string | undefined = "";
+  const submenu = route.path.split("/").length === 3;
+  if (!submenu) {
+    activeMenu = menu.find((item: any) => item.url === url)
+      ? menu.find((item) => item.url === url)?.name
+      : "Register";
+  } else {
+    const hasSubmenu: any = menu
+      .filter((item) => item.hasOwnProperty("submenu"))
+      .find((item2: any) =>
+        item2.submenu.find((item3: any) => item3.url === url)
+      );
+
+    activeMenu = hasSubmenu.submenu.find((item: any) => item.url === url)
+      ? hasSubmenu.submenu.find((item: any) => item.url === url)?.name
+      : "Register";
+  }
+  res = {
+    menu,
+    activeMenu,
+  };
+  return res;
+});
+
+// Function Menu
+const handleclickMenu = (url: string) => {
+  router.push(url);
+  console.log(url);
+};
+
+const handleclickMenuNewWindow = (url: string) => {
+  window.open(url);
+};
+
+const isSubmenuOpen = (url: string) => {
+  return route.path.startsWith(url, 0);
+};
+</script>
 <template>
   <aside
     id="logo-sidebar"
@@ -41,56 +92,6 @@
     </div>
   </aside>
 </template>
-<script lang="ts" setup>
-import menu from "@/menu";
-
-const route = useRoute();
-const router = useRouter();
-
-// state
-const openSubmenu = ref<boolean>(false);
-
-// Menu Data
-const menus: ComputedRef = computed(() => {
-  let res = {};
-  const url = route.path;
-  let activeMenu: string | undefined = "";
-  const submenu = route.path.split("/").length === 3;
-  if (!submenu) {
-    activeMenu = menu.find((item: any) => item.url === url)
-      ? menu.find((item) => item.url === url)?.name
-      : "Register";
-  } else {
-    const hasSubmenu: any = menu
-      .filter((item) => item.hasOwnProperty("submenu"))
-      .find((item2: any) =>
-        item2.submenu.find((item3: any) => item3.url === url)
-      );
-
-    activeMenu = hasSubmenu.submenu.find((item: any) => item.url === url)
-      ? hasSubmenu.submenu.find((item: any) => item.url === url)?.name
-      : "Register";
-  }
-  res = {
-    menu,
-    activeMenu,
-  };
-  return res;
-});
-
-// Function Menu
-const handleclickMenu = (url: string) => {
-  router.push(url);
-};
-
-const handleclickMenuNewWindow = (url: string) => {
-  window.open(url);
-};
-
-const isSubmenuOpen = (url: string) => {
-  return route.path.startsWith(url, 0);
-};
-</script>
 <style>
 .v-enter-active,
 .v-leave-active {

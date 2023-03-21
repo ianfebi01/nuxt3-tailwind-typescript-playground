@@ -3,21 +3,6 @@ import { Fields } from "~~/utils/Interface";
 
 const emit = defineEmits(["input", "blur", "update:modelValue"]);
 
-// const props = defineProps({
-//   item: {
-//     type: Object,
-//     default: () => [],
-//   },
-//   errorMessages: {
-//     type: String,
-//     default: "",
-//   },
-//   modelValue: {
-//     type: [String, Number, Boolean],
-//     default: null,
-//   },
-// });
-
 interface Props {
   item: Fields;
   errorMessages: string;

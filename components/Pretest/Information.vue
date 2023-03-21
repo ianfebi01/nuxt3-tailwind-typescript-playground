@@ -90,7 +90,6 @@ const handleUpdateUpload = (e: Event) => {
   }
   image.value = URL.createObjectURL(files[0]);
   imageFile.value = files[0];
-  console.log(files[0]);
 };
 
 const upload = async () => {

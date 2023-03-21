@@ -34,23 +34,18 @@ const handleclickMenu = (url: string) => {
       name="carbon:chevron-down"
     />
   </div>
-  <Transition name="slide-fade">
-    <ul v-if="open">
-      <li v-for="item in submenu" :key="item.name">
-        <div
-          :class="
-            activeMenu === item?.name
-              ? 'mt-2 pl-7  w-full flex items-center p-2 text-base font-normal dark:bg-gray-700 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
-              : 'mt-2 pl-7  w-full flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
-          "
-        >
-          <div class="ml-3" @click="handleclickMenu(item?.url)">
-            {{ item?.name }}
-          </div>
+
+  <slide-up-down v-model="open" :duration="200">
+    <li v-for="item in submenu" :key="item.name">
+      <div
+        :class="activeMenu === item?.name ? 'menu-active' : 'menu-nonactive'"
+      >
+        <div class="ml-3" @click="handleclickMenu(item?.url)">
+          {{ item?.name }}
         </div>
-      </li>
-    </ul>
-  </Transition>
+      </div>
+    </li>
+  </slide-up-down>
 </template>
 <style lang="scss" scoped>
 .slide-fade-enter-active {
@@ -65,5 +60,13 @@ const handleclickMenu = (url: string) => {
 .slide-fade-leave-to {
   transform: translatey(-20px);
   opacity: 0;
+}
+.menu {
+  &-active {
+    @apply mt-2 pl-7  w-full flex items-center p-2 text-base font-normal dark:bg-gray-700 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
+  }
+  &-nonactive {
+    @apply mt-2 pl-7  w-full flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
+  }
 }
 </style>

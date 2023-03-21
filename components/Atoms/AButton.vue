@@ -9,6 +9,7 @@ interface Props {
   disabled: boolean;
   loading: boolean;
   border: boolean;
+  fontWeight: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -18,11 +19,14 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   loading: false,
   border: false,
+  fontWeight: "bold",
 });
 
 const buttonClass: ComputedRef<string> = computed(
   (): string =>
-    `h-[44px] px-4 hover:brightness-[0.95] transition-all duration-300 font-bold text-[14px] border ${
+    `h-[44px] px-4 hover:brightness-[0.95] transition-all duration-300 font-${
+      props.fontWeight
+    } text-[14px] border ${
       props.border ? `border-${props.color}` : "border-none"
     } rounded-lg bg-${props.bg} text-${props.color}`
 );
@@ -33,7 +37,7 @@ const buttonClass: ComputedRef<string> = computed(
     :type="props.type"
     :class="buttonClass"
     :disabled="props.disabled"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <slot v-if="!props.loading" />
     <AtomsALoader v-else />

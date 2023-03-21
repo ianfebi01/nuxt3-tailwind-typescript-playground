@@ -2379,6 +2379,11 @@ cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+crypto-js@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
+
 css-declaration-sorter@^6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/css-declaration-sorter/-/css-declaration-sorter-6.3.1.tgz#be5e1d71b7a992433fb1c542c7a1b835e45682ec"
@@ -6021,6 +6026,11 @@ vue-tsc@^1.0.24:
   dependencies:
     "@volar/vue-language-core" "1.0.24"
     "@volar/vue-typescript" "1.0.24"
+
+vue3-slide-up-down@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/vue3-slide-up-down/-/vue3-slide-up-down-1.2.5.tgz#9df8a706b24919d5efd58e32600fb7d7bf9d476b"
+  integrity sha512-ZdrJjlU5Wk9ZUMa7P61afvh4mEBse/FqEULNQ1HgAXFnMUSDuT4cf682RbesEDkiyXn2Wt0JgQvbkOz9dn8cJQ==
 
 vue@^3.2.47:
   version "3.2.47"

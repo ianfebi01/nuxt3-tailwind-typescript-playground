@@ -1,6 +1,6 @@
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive("types", {
-    beforeMount: (el: any, binding: any) => {
+    beforeMount: (el: HTMLInputElement, binding: any) => {
       // this two prevent from copy&paste non-number text, including "e".
       // need to have both together to take effect.
 

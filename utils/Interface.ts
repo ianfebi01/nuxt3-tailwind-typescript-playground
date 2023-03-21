@@ -138,6 +138,7 @@ export interface UserData {
 }
 
 export interface List {
+  id?: number;
   name?: string;
   date?: string;
   done?: number;

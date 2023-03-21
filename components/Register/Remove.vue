@@ -10,9 +10,11 @@ import {
   sameAs,
 } from "@vuelidate/validators";
 import { authStore } from "~~/store/auth";
+import { messageStore } from "~~/store/message";
 
 // store
 const auth = authStore();
+const message = messageStore();
 // State
 const fields = ref<Fields[]>(registerRemove);
 const form: any = reactive({});
@@ -113,16 +115,16 @@ const handleCodeSubmit = async () => {
     </button>
     <Transition>
       <p
-        v-if="auth.errorMessage"
+        v-if="message.errorMessage"
         class="text-center transition-all ease-in-out duration-300 mt-1 text-xs font-normal text-red-600 dark:text-red-500"
       >
-        {{ auth.errorMessage }}
+        {{ message.errorMessage }}
       </p>
       <p
-        v-else-if="auth.successMessage"
+        v-else-if="message.successMessage"
         class="text-center transition-all ease-in-out duration-300 mt-1 text-xs font-normal text-green-500"
       >
-        {{ auth.successMessage }}
+        {{ message.successMessage }}
       </p>
     </Transition>
   </form>

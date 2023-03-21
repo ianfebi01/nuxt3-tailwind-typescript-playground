@@ -7,9 +7,25 @@ const menu: Menus[] = [
     icon: "carbon:pen",
   },
   {
-    name: "Register",
+    name: "Node Crypto",
     url: "/",
-    icon: "carbon:user-follow",
+    icon: "carbon:encryption",
+  },
+  {
+    name: "Dom",
+    icon: "carbon:html-reference",
+    collapsible: true,
+    url: "/dom",
+    submenu: [
+      {
+        name: "Drag To Scroll",
+        url: "/dom/drag-to-scroll",
+      },
+      {
+        name: "Drag To Move",
+        url: "/dom/drag-to-move",
+      },
+    ],
   },
   {
     name: "Masonry",
@@ -30,38 +46,6 @@ const menu: Menus[] = [
     name: "To Do List",
     url: "/todolist",
     icon: "carbon:list-boxes",
-  },
-  {
-    name: "Dom",
-    icon: "carbon:html-reference",
-    collapsible: true,
-    url: "/dom",
-    submenu: [
-      {
-        name: "Drag To Scroll",
-        url: "/dom/drag-to-scroll",
-      },
-      {
-        name: "Drag To Move",
-        url: "/dom/drag-to-move",
-      },
-    ],
-  },
-  {
-    name: "gg",
-    icon: "carbon:html-reference",
-    collapsible: true,
-    url: "/duw",
-    submenu: [
-      {
-        name: "Drag To awWE",
-        url: "/fe/drag-hshd",
-      },
-      {
-        name: "Drag To asda",
-        url: "/sd/drag-tsdsd",
-      },
-    ],
   },
 ];
 

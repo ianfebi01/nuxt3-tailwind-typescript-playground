@@ -14,8 +14,8 @@ const emit = defineEmits(["changeStatus"]);
 
 // function
 
-const changeStatus = (val: number, i: number) => {
-  emit("changeStatus", { val, i });
+const changeStatus = (val: number, id: number | undefined) => {
+  emit("changeStatus", { val, id });
 };
 </script>
 <template>
@@ -28,7 +28,7 @@ const changeStatus = (val: number, i: number) => {
       >
         <MoleculesMChecked
           :status="item.done"
-          @changeStatus="changeStatus($event, i)"
+          @changeStatus="changeStatus($event, item.id)"
         />
         <div class="flex flex-col">
           <AtomsATitleList :title="item.name" />

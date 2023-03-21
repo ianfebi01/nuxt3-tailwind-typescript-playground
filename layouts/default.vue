@@ -112,10 +112,12 @@
     </div>
   </nav>
 
-  <div class="flex w-full min-h-screen">
+  <div class="flex w-full min-h-screen max-w-screen overflow-hidden">
     <LayoutSidebar />
 
-    <div class="w-full pt-20 pb-4 px-4 ml-64">
+    <div
+      class="pt-20 pb-4 px-4 ml-64 flex grow-[1] items-stretch overflow-hidden"
+    >
       <slot />
     </div>
   </div>
