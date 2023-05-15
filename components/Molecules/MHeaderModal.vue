@@ -20,12 +20,7 @@ const value = computed({
 </script>
 <template>
   <div class="flex justify-between">
-    <AtomsATitleList
-      :title="title"
-      font-size="24px"
-      color="gray-800"
-      font-weight="semibold"
-    />
+    <AtomsATitleList :title="title" font-size="24px" color="gray-800" font-weight="semibold" />
     <icon name="mdi:close" class="cursor-pointer" @click="value = false" />
   </div>
 </template>

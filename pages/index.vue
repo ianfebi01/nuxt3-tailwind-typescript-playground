@@ -52,39 +52,22 @@ const handleClickRsa = async () => {
 <template>
   <LayoutContentBordered class="gap-8">
     <div>
-      <AtomsATitleList
-        title="Aes Encryption"
-        font-size="22px"
-        font-weight="bold"
-      />
+      <AtomsATitleList title="Aes Encryption" font-size="22px" font-weight="bold" />
       <form @submit.prevent>
         <div class="flex flex-col gap-4">
-          <InputDynamicField
-            v-model="form[`${field.valueName}`]"
-            error-messages=""
-            :item="field"
-          />
+          <InputDynamicField v-model="form[`${field.valueName}`]" error-messages="" :item="field" />
           <AtomsAButton type="submit" bg="blue-500" @click="handleClickAes">
             Aes
           </AtomsAButton>
           <Transition>
-            <div
-              v-if="aes.chipertext"
-              class="bg-blue-100 p-4 border border-none rounded-[8px] flex flex-col gap-2"
-            >
+            <div v-if="aes.chipertext" class="bg-blue-100 p-4 border border-none rounded-[8px] flex flex-col gap-2">
               <div class="flex flex-col">
                 <AtomsATitleList title="Chiper Text" font-weight="bold" />
-                <AtomsASubtitleList
-                  :title="aes.chipertext"
-                  font-weight="bold"
-                />
+                <AtomsASubtitleList :title="aes.chipertext" font-weight="bold" />
               </div>
               <div class="flex flex-col">
                 <AtomsATitleList title="Original Text" font-weight="bold" />
-                <AtomsASubtitleList
-                  :title="aes.originaltext"
-                  font-weight="bold"
-                />
+                <AtomsASubtitleList :title="aes.originaltext" font-weight="bold" />
               </div>
             </div>
           </Transition>
@@ -93,40 +76,22 @@ const handleClickRsa = async () => {
     </div>
     <!-- RSA -->
     <div class="overflow-hidden">
-      <AtomsATitleList
-        title="RSA Encryption"
-        font-size="22px"
-        font-weight="bold"
-      />
+      <AtomsATitleList title="RSA Encryption" font-size="22px" font-weight="bold" />
       <form @submit.prevent>
         <div class="flex flex-col gap-4">
-          <InputDynamicField
-            v-model="form[`${field2.valueName}`]"
-            error-messages=""
-            :item="field2"
-          />
+          <InputDynamicField v-model="form[`${field2.valueName}`]" error-messages="" :item="field2" />
           <AtomsAButton bg="blue-500" type="submit" @click="handleClickRsa">
             Rsa
           </AtomsAButton>
           <Transition>
-            <div
-              v-if="rsa.chipertext"
-              class="bg-blue-100 p-4 border border-none rounded-[8px] flex flex-col gap-2"
-            >
+            <div v-if="rsa.chipertext" class="bg-blue-100 p-4 border border-none rounded-[8px] flex flex-col gap-2">
               <div class="flex flex-col">
                 <AtomsATitleList title="Chiper Text" font-weight="bold" />
-                <AtomsASubtitleList
-                  :title="rsa.chipertext"
-                  font-weight="bold"
-                  class="break-words"
-                />
+                <AtomsASubtitleList :title="rsa.chipertext" font-weight="bold" class="break-words" />
               </div>
               <div class="flex flex-col">
                 <AtomsATitleList title="Original Text" font-weight="bold" />
-                <AtomsASubtitleList
-                  :title="rsa.originaltext"
-                  font-weight="bold"
-                />
+                <AtomsASubtitleList :title="rsa.originaltext" font-weight="bold" />
               </div>
             </div>
           </Transition>
