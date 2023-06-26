@@ -38,6 +38,11 @@ const menu: Menus[] = [
     icon: "carbon:button-centered",
   },
   {
+    name: "Vee Validate",
+    url: "/veeValidate",
+    icon: "carbon:button-centered",
+  },
+  {
     name: "Upload Image",
     url: "/uploadImage",
     icon: "carbon:image-reference",

@@ -60,6 +60,7 @@ const v$ = useVuelidate(rules, form, { $autoDirty: true });
   <div
     class="h-full w-full border border-gray-300 shadow-gray-300 rounded-lg shadow-sm mb-4 p-6 flex gap-2 flex-col"
   >
+    <pre>{{ form }}</pre>
     <h1 class="text-gray-900 font-normal text-3xl">Dynamic Form</h1>
     <div v-for="(item, i) in fields" :key="i">
       <InputDynamicField

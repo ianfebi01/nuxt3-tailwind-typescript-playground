@@ -59,3 +59,11 @@
   @apply h-full;
   @apply object-cover;
 }
+
+// text size
+
+@for $i from 2 through 50 {
+  .text-#{$i} {
+    font-size: #{$i}px;
+  }
+}
